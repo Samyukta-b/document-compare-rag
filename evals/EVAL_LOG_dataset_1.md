@@ -214,3 +214,54 @@ Append-only history of retrieval evals. Each run is written by `python evals/eva
 
 ---
 
+## Run 5 - 2026-10-25 16:46
+
+- **What changed:** Embedding code from the main branch instead of this branch (comparison run). Same chunking 800/80 (1958 chunks, separate index built in /tmp/chroma_main), same retrieval as the previous run: each PDF searched separately, k=25 per PDF, 5 chunks per PDF to the LLM. Only change: embedding. Main-branch way = transformers AutoModel, CLS-token pooling (first token only, not mean pooling), no normalization, no 128-token truncation. Same model name all-MiniLM-L12-v2, Chroma default L2. NOTE: dataset_1 runs 1-4 used the mixed search, so they are not like for like; this log's earlier runs also used the old mixed index.
+- **Git commit:** e774878 (+ uncommitted changes)
+- **Dataset:** 30 questions (16 comparison, 14 single), 46 evidence items
+- **Evidence found within the top 25 (k):** 22/46 (48%)
+- **Setup (read from the code):** chunk size 800 / overlap 80; embedding all-MiniLM-L12-v2 run the main-branch way (transformers AutoModel, CLS-token pooling, no normalization, no 128-token truncation); Chroma default distance (L2); search = separate per PDF, k=25 each; context = 2 PDFs x 5 chunks each
+
+| Group | Questions | Recall@3 | Recall@5 | Recall@15 | Recall@25 | MRR | Pipeline recall | Fully answerable | Fully answerable % |
+|---|---|---|---|---|---|---|---|---|---|
+| All | 30 | 0.17 | 0.17 | 0.39 | 0.48 | 0.10 | 0.17 | 5/30 | 17% |
+| comparison | 16 | 0.12 | 0.12 | 0.38 | 0.47 | 0.08 | 0.12 | 1/16 | 6% |
+| single | 14 | 0.29 | 0.29 | 0.43 | 0.50 | 0.15 | 0.29 | 4/14 | 29% |
+
+**Where the evidence landed per question:**
+
+| Question | Type | Rank of evidence (out of 25) | Reaches LLM |
+|---|---|---|---|
+| `tsla-revenue` | single | TSLA not in top 25 | 0/1 |
+| `tsla-deliveries` | single | TSLA 17/25 | 0/1 |
+| `tsla-storage` | single | TSLA not in top 25 | 0/1 |
+| `tsla-net-income` | single | TSLA not in top 25 | 0/1 |
+| `tsla-rnd` | single | TSLA not in top 25 | 0/1 |
+| `tsla-gross-margin` | single | TSLA not in top 25 | 0/1 |
+| `tsla-cash` | single | TSLA 2/25 | 1/1 |
+| `uber-revenue` | single | UBER 12/25 | 0/1 |
+| `uber-employees` | single | UBER 10/25 | 0/1 |
+| `uber-net-loss` | single | UBER 2/25 | 1/1 |
+| `uber-rnd` | single | UBER not in top 25 | 0/1 |
+| `uber-segments` | single | UBER not in top 25 | 0/1 |
+| `uber-gross-bookings` | single | UBER 2/25 | 1/1 |
+| `uber-cash` | single | UBER 3/25 | 1/1 |
+| `cmp-revenue` | comparison | TSLA not in top 25, UBER 9/25 | 0/2 |
+| `cmp-rnd` | comparison | TSLA not in top 25, UBER not in top 25 | 0/2 |
+| `cmp-cash` | comparison | TSLA 2/25, UBER 3/25 | 2/2 |
+| `cmp-profit` | comparison | TSLA not in top 25, UBER 10/25 | 0/2 |
+| `cmp-headcount` | comparison | TSLA 9/25, UBER 9/25 | 0/2 |
+| `cmp-segments` | comparison | TSLA not in top 25, UBER 10/25 | 0/2 |
+| `cmp-headquarters` | comparison | TSLA not in top 25, UBER not in top 25 | 0/2 |
+| `cmp-exchange` | comparison | TSLA 16/25, UBER not in top 25 | 0/2 |
+| `cmp-incorporation` | comparison | TSLA 22/25, UBER not in top 25 | 0/2 |
+| `cmp-operating-cashflow` | comparison | TSLA not in top 25, UBER not in top 25 | 0/2 |
+| `cmp-investing-cashflow` | comparison | TSLA not in top 25, UBER 20/25 | 0/2 |
+| `cmp-stock-comp` | comparison | TSLA 14/25, UBER not in top 25 | 0/2 |
+| `cmp-operating-result` | comparison | TSLA 6/25, UBER 2/25 | 1/2 |
+| `cmp-capex` | comparison | TSLA 10/25, UBER not in top 25 | 0/2 |
+| `cmp-fiscal-year` | comparison | TSLA not in top 25, UBER not in top 25 | 0/2 |
+| `cmp-ev-tech` | comparison | TSLA 3/25, UBER not in top 25 | 1/2 |
+
+---
+

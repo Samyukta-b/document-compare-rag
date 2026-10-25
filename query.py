@@ -4,7 +4,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama import OllamaLLM
 from embedding import get_embedding_function
 from database import split_documents, add_to_chroma, load_documents
-from collections import defaultdict
 import streamlit as st
 import os
 import logging
@@ -18,6 +17,9 @@ logging.basicConfig(
 
 
 CHROMA_PATH = "chroma"
+K_PER_SOURCE = 25        # chunks fetched from EACH PDF (separate search per PDF)
+CHUNKS_PER_SOURCE = 5    # chunks per PDF that go into the prompt
+NUM_SOURCES = 2          # how many PDFs go into the prompt
 
 COMPARISON_PROMPT_TEMPLATE = """
 Compare the two sources below and answer the question directly with specific facts and figures from each source.
@@ -51,6 +53,21 @@ def process_uploaded_pdfs(pdf_files):
             add_to_chroma(chunks)
             status.update(label="✅ PDFs indexed into DB")
 
+def search_per_source(db, query_text: str):
+    """
+    Search each PDF on its own (metadata filter on 'source'), so one PDF can't crowd the other
+    out of the results. Returns {source: [chunk text, ...]} for the NUM_SOURCES PDFs whose best
+    chunk is closest to the query, with up to CHUNKS_PER_SOURCE chunks each.
+    """
+    sources = sorted({m["source"] for m in db.get(include=["metadatas"])["metadatas"]})
+    per_source = {
+        source: db.similarity_search_with_score(query_text, k=K_PER_SOURCE, filter={"source": source})
+        for source in sources
+    }
+    # Lower score = closer match, so the PDFs with the closest best chunk come first.
+    closest = sorted(per_source, key=lambda s: per_source[s][0][1])[:NUM_SOURCES]
+    return {s: [doc.page_content for doc, _score in per_source[s][:CHUNKS_PER_SOURCE]] for s in closest}
+
 def query_rag(query_text: str, pdf_files=None):
     # Prepare the DB.
     embedding_function: HuggingFaceEmbeddings = load_embedding_function()
@@ -59,29 +76,17 @@ def query_rag(query_text: str, pdf_files=None):
         db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
         status.update(label="✅ Database connected")
 
-    # this is a dictionary to collect the content from at least 2 different documents since we are comparing
-    source_chunks = defaultdict(list)
-
     # If PDF files are uploaded, process each one.
     if pdf_files:
         process_uploaded_pdfs(pdf_files)
 
-    # Search the DB for relevant documents.
-    results = db.similarity_search_with_score(query_text, k=15)
+    # Search each PDF separately and keep the best chunks from each (we are comparing documents).
+    source_chunks = search_per_source(db, query_text)
 
-    # The loop filter results to ensure we get relevant content from two different documents.
-    # Improved retrieval logic by collecting top three chunks per document to increase context for model; the previous logic retrieved only one best chunk per document 
-    
-    for doc, _score in results:
-        source = doc.metadata.get("source")
-
-        if len(source_chunks[source]) < 3:
-            source_chunks[source].append(doc.page_content)
-    
     logging.info(f"size of source_chunks: {len(source_chunks)}")
 
     # Extract contexts.
-    doc_ids = list(source_chunks.keys())[:2]
+    doc_ids = list(source_chunks.keys())
     context_text_doc1 = "\n\n".join(source_chunks[doc_ids[0]])
     context_text_doc2 = "\n\n".join(source_chunks[doc_ids[1]])
 

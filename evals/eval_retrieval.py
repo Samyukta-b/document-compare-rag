@@ -24,14 +24,15 @@ from embedding import get_embedding_function
 import database
 
 # Chunking comes from database.py and the embedding model from embedding.py.
-# The three settings below MUST MATCH query.py (k=..., "< 3" chunks per PDF, "[:2]" PDFs).
+# The three settings below MUST MATCH query.py (K_PER_SOURCE, CHUNKS_PER_SOURCE, NUM_SOURCES)
+# and search_per_source() below mirrors query.py's function of the same name.
 # If you change them in query.py, change them here too, otherwise the eval tests something else.
 CHROMA_PATH = database.CHROMA_PATH
 DATASET_PATH = "evals/dataset_2.json"
 LOG_PATH = "evals/EVAL_LOG_dataset_2.md"
-MAX_K = 15                 # k in query.py: db.similarity_search_with_score(query_text, k=...)
-CHUNKS_PER_SOURCE = 3      # query.py: len(source_chunks[source]) < ...
-NUM_SOURCES = 2            # query.py: list(source_chunks.keys())[:...]
+MAX_K = 25                 # query.py K_PER_SOURCE: chunks fetched from EACH PDF; ranks are within that PDF's list
+CHUNKS_PER_SOURCE = 5      # query.py CHUNKS_PER_SOURCE
+NUM_SOURCES = 2            # query.py NUM_SOURCES
 K_VALUES = sorted({k for k in (3, 5, 15, MAX_K) if k <= MAX_K})   # we report recall at each of these
 
 
@@ -48,15 +49,18 @@ def first_rank(docs, evidence):
     return None
 
 
-def pipeline_context(results):
-    """The chunks query.py sends to the LLM: up to CHUNKS_PER_SOURCE per PDF, first NUM_SOURCES PDFs."""
-    per_source = defaultdict(list)
-    for doc, _score in results:
-        source = doc.metadata.get("source")
-        if len(per_source[source]) < CHUNKS_PER_SOURCE:
-            per_source[source].append(doc)
-    first_sources = list(per_source.keys())[:NUM_SOURCES]
-    return [doc for s in first_sources for doc in per_source[s]]
+def search_per_source(db, query_text):
+    """Mirror of query.py's search_per_source: each PDF is searched on its own (metadata filter on 'source').
+    Returns {source: [(Document, score), ...]} with MAX_K results per PDF, best first."""
+    sources = sorted({m["source"] for m in db.get(include=["metadatas"])["metadatas"]})
+    return {s: db.similarity_search_with_score(query_text, k=MAX_K, filter={"source": s}) for s in sources}
+
+
+def pipeline_context(per_source):
+    """The chunks query.py sends to the LLM: the NUM_SOURCES PDFs with the closest best chunk,
+    CHUNKS_PER_SOURCE chunks from each."""
+    closest = sorted(per_source, key=lambda s: per_source[s][0][1])[:NUM_SOURCES]
+    return [doc for s in closest for doc, _score in per_source[s][:CHUNKS_PER_SOURCE]]
 
 
 def new_totals():
@@ -86,14 +90,14 @@ def summarize(t):
 def evaluate(dataset, db):
     rows = []
     for q in dataset:
-        results = db.similarity_search_with_score(q["question"], k=MAX_K)
-        docs = [doc for doc, _score in results]
-        context_docs = pipeline_context(results)
+        per_source = search_per_source(db, q["question"])
+        context_docs = pipeline_context(per_source)
 
         row = {"id": q["id"], "type": q["type"], "n": len(q["evidence"]), "pipeline": 0, "rr": 0.0,
                "ranks": [], "labels": [], **{f"r{k}": 0 for k in K_VALUES}}
         for ev in q["evidence"]:
-            rank = first_rank(docs, ev)
+            # the evidence is looked for in its own PDF's results, so rank = position within that PDF
+            rank = first_rank([doc for doc, _score in per_source.get(ev["source"], [])], ev)
             row["ranks"].append(rank)
             row["labels"].append(os.path.basename(ev["source"]).split("-")[0].upper())  # e.g. TSLA, UBER
             row["rr"] += 1 / rank if rank else 0
@@ -121,8 +125,8 @@ def pipeline_config():
         f"chunk size {database.CHUNK_SIZE} / overlap {database.CHUNK_OVERLAP}; "
         f"embedding {getattr(embeddings, 'model_name', 'unknown')}; "
         f"Chroma default distance (L2); "
-        f"search k={MAX_K}; "
-        f"context = first {NUM_SOURCES} PDFs x {CHUNKS_PER_SOURCE} chunks each"
+        f"search = separate per PDF, k={MAX_K} each; "
+        f"context = {NUM_SOURCES} PDFs x {CHUNKS_PER_SOURCE} chunks each"
     )
 
 
