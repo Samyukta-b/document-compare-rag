@@ -19,7 +19,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 def get_embedding_function():
 
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L12-v2",
+        model_name="BAAI/bge-small-en-v1.5",
         model_kwargs={"device": "cpu"},  # or "cuda" if you have GPU
         encode_kwargs={"normalize_embeddings": True}
     )

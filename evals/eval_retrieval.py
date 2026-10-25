@@ -28,8 +28,8 @@ import database
 # and search_per_source() below mirrors query.py's function of the same name.
 # If you change them in query.py, change them here too, otherwise the eval tests something else.
 CHROMA_PATH = database.CHROMA_PATH
-DATASET_PATH = "evals/dataset_2.json"
-LOG_PATH = "evals/EVAL_LOG_dataset_2.md"
+DATASET_PATH = "evals/dataset_3.json"
+LOG_PATH = "evals/EVAL_LOG_dataset_3.md"
 MAX_K = 25                 # query.py K_PER_SOURCE: chunks fetched from EACH PDF; ranks are within that PDF's list
 CHUNKS_PER_SOURCE = 5      # query.py CHUNKS_PER_SOURCE
 NUM_SOURCES = 2            # query.py NUM_SOURCES
@@ -37,8 +37,10 @@ K_VALUES = sorted({k for k in (3, 5, 15, MAX_K) if k <= MAX_K})   # we report re
 
 
 def is_match(doc, evidence):
-    """A chunk is relevant if it comes from the evidence's file AND page."""
-    return doc.metadata.get("source") == evidence["source"] and doc.metadata.get("page") == evidence["page"]
+    """A chunk is relevant if it comes from the evidence's file AND page (or one of its optional 'alt_pages',
+    other pages that contain the same phrase)."""
+    pages = [evidence["page"], *evidence.get("alt_pages", [])]
+    return doc.metadata.get("source") == evidence["source"] and doc.metadata.get("page") in pages
 
 
 def first_rank(docs, evidence):
@@ -167,6 +169,8 @@ def append_log(note, rows, overall, by_type):
             "Append-only history of retrieval evals. Each run is written by "
             "`python evals/eval_retrieval.py --log \"note\"`.",
             "",
+            "- **Evidence page**: the page in `evidence`, plus any `alt_pages` (other pages containing the same phrase) "
+            "when the dataset lists them.",
             "- **Rank**: position of the first retrieved chunk that comes from the evidence page, among the k chunks "
             "returned (1 = best match, k = last). k is shown in each run's config.",
             "- **Recall@k**: share of evidence pages found in the top k retrieved chunks.",
