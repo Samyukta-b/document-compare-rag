@@ -24,6 +24,8 @@ logging.basicConfig(
 CHROMA_PATH = "chroma"
 DATA_PATH = "data"
 MAX_BATCH_SIZE = 166  # Set the maximum batch size to 166
+CHUNK_SIZE = 800
+CHUNK_OVERLAP = 80
 
 def main():
 
@@ -46,8 +48,8 @@ def load_documents() -> list[Document]:
 
 def split_documents(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=800,
-        chunk_overlap=80,
+        chunk_size=CHUNK_SIZE,
+        chunk_overlap=CHUNK_OVERLAP,
         length_function=len,
         is_separator_regex=False,
     )

@@ -1,0 +1,529 @@
+[
+  {
+    "id": "tsla-total-assets",
+    "type": "single",
+    "question": "What were Tesla's total assets as of December 31, 2023?",
+    "expected_answer": "$106,618 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 49, "contains": "Total assets 106,618"}
+    ],
+    "category": "balance_sheet"
+  },
+  {
+    "id": "tsla-stockholders-equity",
+    "type": "single",
+    "question": "What was Tesla's total stockholders' equity at the end of 2023?",
+    "expected_answer": "$62,634 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 49, "contains": "Total stockholders' equity 62,634"}
+    ],
+    "category": "balance_sheet"
+  },
+  {
+    "id": "tsla-eps-diluted",
+    "type": "single",
+    "question": "What was Tesla's diluted earnings per share in 2023?",
+    "expected_answer": "$4.30 per diluted share.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Diluted $4.30"}
+    ],
+    "category": "income_statement"
+  },
+  {
+    "id": "tsla-sga",
+    "type": "single",
+    "question": "How much did Tesla spend on selling, general and administrative expenses in 2023?",
+    "expected_answer": "$4,800 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 41, "contains": "Selling, general and administrative 4,800"}
+    ],
+    "category": "operating_expenses"
+  },
+  {
+    "id": "tsla-automotive-revenue",
+    "type": "single",
+    "question": "What was Tesla's total automotive revenue in 2023?",
+    "expected_answer": "$82,419 million, which includes automotive sales, regulatory credits, and leasing.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Total automotive revenues 82,419"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "tsla-energy-revenue",
+    "type": "single",
+    "question": "What was Tesla's revenue from energy generation and storage in 2023?",
+    "expected_answer": "$6,035 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Energy generation and storage 6,035"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "tsla-services-revenue",
+    "type": "single",
+    "question": "What was Tesla's services and other revenue in 2023?",
+    "expected_answer": "$8,319 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Services and other 8,319"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "tsla-operating-income",
+    "type": "single",
+    "question": "What was Tesla's income from operations in 2023?",
+    "expected_answer": "$8,891 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Income from operations 8,891"}
+    ],
+    "category": "income_statement"
+  },
+  {
+    "id": "tsla-financing-cashflow",
+    "type": "single",
+    "question": "What was Tesla's net cash provided by financing activities in 2023?",
+    "expected_answer": "$2,589 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 53, "contains": "Net cash provided by financing activities 2,589"}
+    ],
+    "category": "cash_flow"
+  },
+  {
+    "id": "tsla-deferred-revenue",
+    "type": "single",
+    "question": "What was Tesla's non-current deferred revenue as of December 31, 2023?",
+    "expected_answer": "$3,251 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 49, "contains": "Deferred revenue, net of current portion 3,251"}
+    ],
+    "category": "balance_sheet"
+  },
+  {
+    "id": "tsla-warranty",
+    "type": "single",
+    "question": "What was Tesla's total accrued warranty as of December 31, 2023?",
+    "expected_answer": "$5,152 million, primarily relating to the automotive segment.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 75, "contains": "Total accrued warranty"}
+    ],
+    "category": "liabilities"
+  },
+  {
+    "id": "tsla-us-revenue",
+    "type": "single",
+    "question": "How much revenue did Tesla generate in the United States in 2023?",
+    "expected_answer": "$45,235 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 91, "contains": "United States 45,235"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "tsla-china-revenue",
+    "type": "single",
+    "question": "How much revenue did Tesla generate in China in 2023?",
+    "expected_answer": "$21,745 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 91, "contains": "China 21,745"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "tsla-dividends",
+    "type": "single",
+    "question": "Has Tesla ever paid a cash dividend on its common stock?",
+    "expected_answer": "No. Tesla has never declared or paid cash dividends and does not anticipate paying any cash dividends in the foreseeable future.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 31, "contains": "We have never declared or paid cash dividends"}
+    ],
+    "category": "shareholder_policy"
+  },
+  {
+    "id": "tsla-energy-gross-margin",
+    "type": "single",
+    "question": "What was Tesla's gross margin for the energy generation and storage segment in 2023?",
+    "expected_answer": "18.9%, with a gross profit of $1,141 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 39, "contains": "Energy generation and storage gross margin 18.9"}
+    ],
+    "category": "profitability"
+  },
+  {
+    "id": "tsla-total-cash-investments",
+    "type": "single",
+    "question": "How much total cash, cash equivalents and investments did Tesla hold at year-end 2023?",
+    "expected_answer": "$29.09 billion in cash, cash equivalents and investments.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 43, "contains": "$29.09 billion in cash and cash equivalents and investments"}
+    ],
+    "category": "liquidity"
+  },
+  {
+    "id": "uber-gross-bookings-mobility",
+    "type": "single",
+    "question": "What were Uber's Gross Bookings for the Mobility segment in 2022?",
+    "expected_answer": "$52,665 million.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "52,665"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "uber-gross-bookings-delivery",
+    "type": "single",
+    "question": "What were Uber's Gross Bookings for the Delivery segment in 2022?",
+    "expected_answer": "$55,778 million.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "55,778"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "uber-trips",
+    "type": "single",
+    "question": "How many trips did Uber complete in 2022?",
+    "expected_answer": "7,642 million trips, up 20% from 6,368 million in 2021.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "7,642"}
+    ],
+    "category": "operating_metrics"
+  },
+  {
+    "id": "uber-mapc",
+    "type": "single",
+    "question": "How many Monthly Active Platform Consumers (MAPCs) did Uber have in Q4 2022?",
+    "expected_answer": "131 million MAPCs, up 11% from 118 million in Q4 2021.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "131 million"}
+    ],
+    "category": "operating_metrics"
+  },
+  {
+    "id": "uber-adjusted-ebitda",
+    "type": "single",
+    "question": "What was Uber's Adjusted EBITDA in 2022?",
+    "expected_answer": "$1,713 million, compared to a loss of $774 million in 2021.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "1,713"}
+    ],
+    "category": "profitability"
+  },
+  {
+    "id": "uber-freight-revenue",
+    "type": "single",
+    "question": "What was Uber Freight's revenue in 2022?",
+    "expected_answer": "$6,947 million, a 226% increase from 2021.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "6,947"}
+    ],
+    "category": "revenue"
+  },
+  {
+    "id": "uber-total-assets",
+    "type": "single",
+    "question": "What were Uber's total assets as of December 31, 2022?",
+    "expected_answer": "$32,109 million.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 74, "contains": "Total assets 32,109"}
+    ],
+    "category": "balance_sheet"
+  },
+  {
+    "id": "uber-long-term-debt",
+    "type": "single",
+    "question": "What was Uber's long-term debt as of December 31, 2022?",
+    "expected_answer": "$9,265 million (net of current portion).",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 74, "contains": "Long-term debt 9,265"}
+    ],
+    "category": "balance_sheet"
+  },
+  {
+    "id": "uber-goodwill",
+    "type": "single",
+    "question": "What was the goodwill balance on Uber's balance sheet as of December 31, 2022?",
+    "expected_answer": "$8,263 million.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 74, "contains": "Goodwill 8,263"}
+    ],
+    "category": "balance_sheet"
+  },
+  {
+    "id": "cmp2-total-assets",
+    "type": "comparison",
+    "question": "How do the total assets of Tesla and Uber compare?",
+    "expected_answer": "Tesla had total assets of $106,618 million (end of 2023). Uber had total assets of $32,109 million (end of 2022). Tesla's total assets are more than three times larger.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 49, "contains": "Total assets 106,618"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 74, "contains": "Total assets 32,109"}
+    ],
+    "category": "difference"
+  },
+  {
+    "id": "cmp2-operating-income",
+    "type": "comparison",
+    "question": "Compare the income or loss from operations of Tesla and Uber in their most recent reported year.",
+    "expected_answer": "Tesla reported income from operations of $8,891 million in 2023. Uber reported a loss from operations of $1,832 million in 2022.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Income from operations 8,891"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 53, "contains": "Loss from operations (3,834) (1,832)"}
+    ],
+    "category": "difference"
+  },
+  {
+    "id": "cmp2-eps",
+    "type": "comparison",
+    "question": "Compare the diluted earnings (or loss) per share of Tesla and Uber.",
+    "expected_answer": "Tesla had diluted EPS of $4.30 (2023). Uber had diluted loss per share of $4.65 (2022). Tesla was profitable on a per-share basis while Uber posted a significant per-share loss.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Diluted $4.30"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 53, "contains": "$(4.65)"}
+    ],
+    "category": "difference"
+  },
+  {
+    "id": "cmp2-sga",
+    "type": "comparison",
+    "question": "How does Tesla's selling, general and administrative expense compare to Uber's?",
+    "expected_answer": "Tesla spent $4,800 million on SG&A (2023). Uber spent $3,136 million on general and administrative expenses alone in 2022 (plus $4,756 million on sales and marketing). Uber's combined overhead is significantly higher.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 41, "contains": "Selling, general and administrative 4,800"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "General and administrative 3,136"}
+    ],
+    "category": "difference"
+  },
+  {
+    "id": "cmp2-dividends",
+    "type": "comparison",
+    "category": "similarity",
+    "question": "Do Tesla and Uber pay dividends to shareholders?",
+    "expected_answer": "Neither company pays dividends. Both Tesla and Uber have stated they have never declared or paid cash dividends and do not anticipate doing so in the foreseeable future.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 31, "contains": "We have never declared or paid cash dividends"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 21, "contains": "We have never declared or paid cash dividends"}
+    ]
+  },
+  {
+    "id": "cmp2-financing-cashflow",
+    "type": "comparison",
+    "category": "similarity",
+    "question": "How does cash from financing activities compare between Tesla and Uber?",
+    "expected_answer": "Tesla generated $2,589 million from financing activities in 2023. Uber generated $15 million from financing activities in 2022. Both were slightly positive, but Tesla's was substantially larger.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 53, "contains": "Net cash provided by financing activities 2,589"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 63, "contains": "Net cash provided by financing activities 15"}
+    ],
+    "category": "similarity"
+  },
+  {
+    "id": "cmp2-geographic-revenue",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How do Tesla and Uber compare in terms of US versus international revenue?",
+    "expected_answer": "Tesla generated $45,235 million in the US and $51,538 million internationally (China: $21,745 million, other: $29,793 million) in 2023. Uber generated $17,953 million in the US and $13,924 million internationally (UK: $4,215 million, other countries: $9,709 million) in 2022. Both companies earn substantial revenue outside the US.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 91, "contains": "United States 45,235"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "United States 17,953"}
+    ]
+  },
+  {
+    "id": "cmp2-debt",
+    "type": "comparison",
+    "category": "difference",
+    "question": "Compare the long-term debt levels of Tesla and Uber.",
+    "expected_answer": "Tesla had long-term debt and finance leases of $2,857 million (end of 2023). Uber had long-term debt of $9,265 million (end of 2022). Uber carries more than three times Tesla's long-term debt.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 74, "contains": "Long-term debt and finance leases 2,857"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 74, "contains": "Long-term debt 9,265"}
+    ]
+  },
+  {
+    "id": "cmp2-trips-vs-deliveries",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How does Uber's core transaction volume compare to Tesla's vehicle deliveries?",
+    "expected_answer": "Uber completed 7,642 million trips in 2022 across its platform. Tesla delivered 1,808,581 consumer vehicles in 2023. Uber's volume is in the billions of transactions, while Tesla's is in the low millions of physical units.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "7,642"},
+      {"source": "data/tsla-20231231-gen.pdf", "page": 33, "contains": "1,808,581"}
+    ]
+  },
+  {
+    "id": "cmp2-adjusted-vs-gaap",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How do Tesla and Uber differ in their path to GAAP profitability?",
+    "expected_answer": "Tesla reported GAAP net income of $14,974 million in 2023, demonstrating clear GAAP profitability. Uber reported a GAAP net loss of $9,141 million in 2022, driven largely by $7.0 billion in unrealized losses on equity investments (Aurora, Grab, Didi), while its Adjusted EBITDA was a positive $1,713 million.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Net income 14,974"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 53, "contains": "Net loss attributable to Uber Technologies, Inc. $ (496) $ (9,141)"}
+    ]
+  },
+  {
+    "id": "cmp2-autonomous-investment",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How do Tesla and Uber each approach autonomous vehicle technology, and what financial impact did it have?",
+    "expected_answer": "Tesla develops self-driving technology in-house (Autopilot and FSD) and considers it a core part of its product. Uber sold its ATG autonomous driving business to Aurora in January 2021 and retains an equity stake. In 2022, Uber recorded a $3.0 billion unrealized loss on its Aurora investment.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 5, "contains": "Self-Driving Development and Artificial Intelligence"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 56, "contains": "sale of our ATG Business to Aurora"}
+    ]
+  },
+  {
+    "id": "cmp2-gross-margin",
+    "type": "comparison",
+    "category": "difference",
+    "question": "Compare the gross profit margins of Tesla and Uber.",
+    "expected_answer": "Tesla had a total gross margin of 18.2% ($17,660 million gross profit) in 2023. Uber had a gross profit of approximately $12,218 million on $31,877 million revenue (approximately 38% gross margin) in 2022. Uber had a higher gross margin percentage, but Tesla earned more absolute gross profit.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 39, "contains": "Total gross margin 18.2"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 53, "contains": "Cost of revenue 19,659"}
+    ]
+  },
+  {
+    "id": "cmp2-countries",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How does the global geographic footprint of Tesla and Uber compare?",
+    "expected_answer": "Tesla manufactures and sells vehicles primarily from a small number of Gigafactories across the US, China, Germany, and reports revenue across the US, China, and other international markets. Uber operates in approximately 70 countries and approximately 10,500 cities worldwide as of December 31, 2022, giving it a far broader geographic reach.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 30, "contains": "Gigafactory Texas"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 9, "contains": "approximately 70 countries"}
+    ]
+  },
+  {
+    "id": "cmp2-goodwill",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How do Tesla and Uber compare in terms of goodwill on their balance sheets?",
+    "expected_answer": "Tesla carries minimal goodwill from its asset-light history. Uber carried $8,263 million in goodwill as of December 31, 2022, reflecting its history of acquisitions (including the Careem and Postmates deals).",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 49, "contains": "Goodwill"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 74, "contains": "Goodwill 8,263"}
+    ]
+  },
+  {
+    "id": "cmp2-delivery-segment-ebitda",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How did Uber's Delivery segment financial performance compare to its Mobility segment in 2022?",
+    "expected_answer": "Uber Mobility had Adjusted EBITDA of $3,299 million in 2022. Uber Delivery turned Adjusted EBITDA positive at $551 million in 2022, compared to a loss of $348 million in 2021. Mobility is still the dominant profit driver.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "Mobility Adjusted EBITDA"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "Delivery Adjusted EBITDA"}
+    ]
+  },
+  {
+    "id": "cmp2-cash-page33-vs-page49",
+    "type": "comparison",
+    "category": "same_doc_cross_page",
+    "question": "Tesla's annual report mentions ending cash and cash equivalents in two separate places. What do both say?",
+    "expected_answer": "On page 33 (MD&A highlights), Tesla states it ended 2023 with $29.09 billion in cash, cash equivalents and investments (a broader figure). On page 49 (balance sheet), it reports cash and cash equivalents specifically as $16,398 million. The difference is because the MD&A figure includes short-term investments.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 33, "contains": "$29.09 billion in cash and cash equivalents and investments"},
+      {"source": "data/tsla-20231231-gen.pdf", "page": 49, "contains": "Cash and cash equivalents $ 16,398"}
+    ]
+  },
+  {
+    "id": "cmp2-revenue-growth",
+    "type": "comparison",
+    "category": "difference",
+    "question": "Compare the revenue growth trajectories of Tesla and Uber.",
+    "expected_answer": "Tesla grew total revenues from $81,462 million in 2022 to $96,773 million in 2023, an increase of about 19%. Uber grew revenues from $17,455 million in 2021 to $31,877 million in 2022, an increase of 83%. Uber showed faster percentage growth, though on a smaller absolute base.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Total revenues 96,773"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "31,877"}
+    ]
+  },
+  {
+    "id": "cmp2-insurance",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How do insurance obligations differ between Tesla and Uber?",
+    "expected_answer": "Tesla primarily carries warranty reserves ($5,152 million at end of 2023) to cover vehicle defects. Uber carries $4.7 billion in insurance reserves (as of December 31, 2022) primarily for third-party liability claims arising from trips on its platform — a different nature of risk.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 75, "contains": "Total accrued warranty"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 74, "contains": "insurance reserves"}
+    ]
+  },
+  {
+    "id": "cmp2-energy-vs-freight",
+    "type": "comparison",
+    "category": "difference",
+    "question": "Compare Tesla's energy generation and storage segment with Uber's Freight segment.",
+    "expected_answer": "Tesla's energy generation and storage segment generated $6,035 million in revenue with an 18.9% gross margin in 2023. Uber Freight generated $6,947 million in revenue in 2022 but had Adjusted EBITDA of $0 (breakeven). Both segments are non-core diversification bets adjacent to their respective main businesses.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 39, "contains": "Energy generation and storage gross margin 18.9"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "6,947"}
+    ]
+  },
+  {
+    "id": "cmp2-deferred-revenue-vs-bookings",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How do Tesla and Uber each recognize revenue differently given the nature of their businesses?",
+    "expected_answer": "Tesla recognizes automotive revenue upon vehicle delivery, and defers revenue for items like FSD software, Supercharging access, and over-the-air updates over time, resulting in $3,251 million in non-current deferred revenue (end of 2023). Uber primarily recognizes revenue at the time of trip completion or delivery, with revenue presented gross in certain markets where it acts as principal.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 49, "contains": "Deferred revenue, net of current portion 3,251"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "gross basis"}
+    ]
+  },
+  {
+    "id": "cmp2-trips-page50-vs-page5",
+    "type": "comparison",
+    "category": "same_doc_cross_page",
+    "question": "Uber's 10-K mentions trip counts in multiple places. What does page 5 say about the business and how does page 50 quantify trips?",
+    "expected_answer": "Page 5 describes Uber as having three operating and reportable segments — Mobility, Delivery, and Freight. Page 50 of the 10-K quantifies that Uber completed 7,642 million trips across the platform in 2022, up 20% from 6,368 million in 2021.",
+    "evidence": [
+      {"source": "data/uber-10-k-2023.pdf", "page": 5, "contains": "three operating and reportable segments: Mobility, Delivery and Freight"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 50, "contains": "7,642"}
+    ]
+  },
+  {
+    "id": "cmp2-employees-page13-vs-page12",
+    "type": "comparison",
+    "category": "same_doc_cross_page",
+    "question": "Tesla mentions its employee count in the 10-K. What does the report say about employee headcount and where is this information found?",
+    "expected_answer": "Tesla states on page 13 (Human Capital section) that as of December 31, 2023, its employee headcount worldwide was 140,473. The same figure is referenced in the MD&A context starting page 12, confirming a large global workforce supporting manufacturing, engineering, and services.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 13, "contains": "employee headcount worldwide was 140,473"},
+      {"source": "data/tsla-20231231-gen.pdf", "page": 12, "contains": "employee"}
+    ]
+  },
+  {
+    "id": "cmp2-capex-intensity",
+    "type": "comparison",
+    "category": "difference",
+    "question": "How capital-intensive are Tesla and Uber based on their capital expenditure relative to revenue?",
+    "expected_answer": "Tesla spent $8,898 million on capital expenditures against $96,773 million in revenue in 2023 (~9.2% capex intensity). Uber spent $252 million on capital expenditures against $31,877 million in revenue in 2022 (~0.8% capex intensity). Tesla is a hardware/manufacturing business and far more capital-intensive than Uber's asset-light platform model.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 53, "contains": "Purchases of property and equipment excluding finance leases, net of sales ( 8,898 )"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 63, "contains": "$252 million in purchases of property and equipment"}
+    ]
+  },
+  {
+    "id": "cmp2-stock-based-comp-page",
+    "type": "comparison",
+    "category": "similarity",
+    "question": "Both Tesla and Uber disclose stock-based compensation in their cash flow statements. What did each company report?",
+    "expected_answer": "Tesla recorded $1,812 million in stock-based compensation in 2023 (per the cash flow statement on page 53). Uber recorded approximately $1.8 billion of stock-based compensation expense in 2022 (noted in MD&A). The amounts are strikingly similar despite the two companies operating in very different industries.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 53, "contains": "Stock-based compensation 1,812"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 63, "contains": "$1.8 billion of stock-based compensation expense"}
+    ]
+  },
+  {
+    "id": "cmp2-mobility-revenue-vs-automotive",
+    "type": "comparison",
+    "category": "difference",
+    "question": "Compare Uber's Mobility segment revenue to Tesla's automotive revenue.",
+    "expected_answer": "Tesla's total automotive revenues were $82,419 million in 2023. Uber's Mobility segment revenue was $14,029 million in 2022. Tesla's automotive revenue is nearly six times larger than Uber's entire Mobility segment, reflecting Tesla's status as a major global automaker versus Uber's role as a platform intermediary.",
+    "evidence": [
+      {"source": "data/tsla-20231231-gen.pdf", "page": 50, "contains": "Total automotive revenues 82,419"},
+      {"source": "data/uber-10-k-2023.pdf", "page": 55, "contains": "14,029"}
+    ],
+    "category": "difference"
+  }
+]
